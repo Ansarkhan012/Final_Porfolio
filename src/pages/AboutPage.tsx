@@ -1,3 +1,4 @@
+import { AboutView } from "../view/AboutView"
 
 
 function AboutPage() {
@@ -6,6 +7,7 @@ function AboutPage() {
     <title>
         About Page | Ansar
     </title>
+    <AboutView />
     </>
   )
 }

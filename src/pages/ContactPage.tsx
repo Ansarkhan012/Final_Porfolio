@@ -1,3 +1,4 @@
+import { ContactView } from "../view/ContactView"
 
 
 function ContactPage() {
@@ -6,6 +7,7 @@ function ContactPage() {
     <title>
         Contact Page | Ansar
     </title>
+    <ContactView />
     </>
   )
 }

@@ -1,3 +1,4 @@
+import { HomeView } from "../view/HomeView"
 
 
 function HomePage() {
@@ -6,6 +7,7 @@ function HomePage() {
     <title>
         Home Page | Ansar
     </title>
+    <HomeView />
     </>
   )
 }

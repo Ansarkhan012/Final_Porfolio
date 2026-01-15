@@ -1,3 +1,4 @@
+import { WorkView } from "../view/WorkView"
 
 
 function WorkPage() {
@@ -6,6 +7,7 @@ function WorkPage() {
     <title>
         Work Page | Ansar
     </title>
+    <WorkView />
     </>
   )
 }
