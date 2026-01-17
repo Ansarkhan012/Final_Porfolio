@@ -5,6 +5,7 @@ function NavBar() {
   <>
   <nav>
     <div className="logo">Ansar</div>
+    <div className="navLink"></div>
   </nav>
   </>
   )
