@@ -3,7 +3,9 @@
 function NavBar() {
   return (
   <>
-  <nav></nav>
+  <nav>
+    <div className="logo">Ansar</div>
+  </nav>
   </>
   )
 }
