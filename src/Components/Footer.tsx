@@ -3,7 +3,9 @@
 function Footer() {
   return (
     <>
-    <footer></footer>
+    <footer>
+      <h3>Ansar</h3>
+    </footer>
     </>
   )
 }
