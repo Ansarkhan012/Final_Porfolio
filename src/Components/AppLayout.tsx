@@ -1,15 +1,16 @@
+import { Outlet } from "react-router-dom"
 import Footer from "./Footer"
 import NavBar from "./NavBar"
 
 
-function Layout() {
+export const AppLayout = () => {
   return (
     <>
     <header>
       <NavBar />
     </header>
     <main>
-
+      <Outlet />
     </main>
     <footer>
         <Footer />
@@ -18,4 +19,3 @@ function Layout() {
   )
 }
 
-export default Layout
