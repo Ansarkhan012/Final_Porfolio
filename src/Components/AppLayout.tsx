@@ -6,7 +6,7 @@ export const AppLayout = () => {
   return (
     
     <div className="bg-white text-black min-h-screen"> 
-      <header>
+      <header className="relative top-0 z-50">
         <NavBar />
       </header>
       
