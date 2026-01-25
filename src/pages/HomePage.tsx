@@ -5,7 +5,7 @@ function HomePage() {
   return (
     <>
     <title>
-        Home Page | Ansar
+        Ansar | Frontend Developer
     </title>
     <HomeView />
     </>

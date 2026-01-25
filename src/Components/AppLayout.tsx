@@ -9,7 +9,7 @@ export const AppLayout = () => {
     <header>
       <NavBar />
     </header>
-    <main>
+    <main className="">
       <Outlet />
     </main>
     <footer>
