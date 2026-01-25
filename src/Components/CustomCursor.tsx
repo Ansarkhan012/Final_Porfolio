@@ -1,73 +1,78 @@
-// Components/CustomCursor.tsx
-import React, { useEffect, useRef } from 'react';
-import gsap from 'gsap';
+import React, { useEffect, useRef } from "react";
+import gsap from "gsap";
 
 const CustomCursor: React.FC = () => {
-  // Cursor element ka ref
   const cursorRef = useRef<HTMLDivElement>(null);
-  // State track karne ke liye ref (re-render se bachne ke liye)
   const isHoveringRef = useRef(false);
 
   useEffect(() => {
-    // Make sure cursor element exists
-    if (!cursorRef.current) return;
+    const cursor = cursorRef.current;
+    if (!cursor) return;
 
-    // --- GSAP Initial Setup ---
-    // Cursor ko center karne ke liye initial offset set karte hain
-    gsap.set(cursorRef.current, { xPercent: -50, yPercent: -50 });
+    // 1. Initial Center Alignment
+    gsap.set(cursor, { xPercent: -50, yPercent: -50 });
+
+    // 2. Optimization: quickTo use karein taaki mouse lag na kare
+    const xTo = gsap.quickTo(cursor, "x", { duration: 0.4, ease: "power3" });
+    const yTo = gsap.quickTo(cursor, "y", { duration: 0.4, ease: "power3" });
 
     const moveCursor = (e: MouseEvent) => {
-      // 1. Movement Animation (Smooth follow)
-      gsap.to(cursorRef.current, {
-        x: e.clientX,
-        y: e.clientY,
-        duration: 0.3, // Jitna bara number, utna zyada "lag" ya smooth hoga
-        ease: "power2.out",
-        overwrite: "auto" // Performance optimization
-      });
+     
+      xTo(e.clientX);
+      yTo(e.clientY);
 
-      // 2. Hover Detection Logic
       const target = e.target as HTMLElement;
       
-      // Check karein ke jis cheez par mouse hai wo link, button, ya specific class hai?
-      // `closest` function parent elements ko bhi check karta hai.
-      const isActionable = target.closest('a, button, input, textarea, .hover-target');
+      const isTextHover = target.closest("Link, button, [data-cursor='hover']");
 
-      // Scenario A: Mouse abhi actionable cheez par aya hai (Enter)
-      if (isActionable && !isHoveringRef.current) {
-        isHoveringRef.current = true; // Flag update
-        gsap.to(cursorRef.current, {
-            opacity: 0, // Transparent ho jaye
-            scale: 0.3, // Thora chota ho kar gayab ho (optional cool effect)
-            duration: 0.2
-        });
-      }
-      // Scenario B: Mouse abhi actionable cheez se hat gaya hai (Leave)
-      else if (!isActionable && isHoveringRef.current) {
-        isHoveringRef.current = false; // Flag update
-        gsap.to(cursorRef.current, {
-            opacity: 1, // Wapis nazar aaye
-            scale: 1, // Wapis normal size
-            duration: 0.2
-        });
+      if (isTextHover) {
+        if (!isHoveringRef.current) {
+          isHoveringRef.current = true;
+          // Hover State: Bada hona aur transparent hona
+          gsap.to(cursor, {
+            scale: 2,
+            mixBlendMode: "difference", 
+            duration: 0.25,
+            ease: "power2.out",
+          });
+        }
+      } else {
+        if (isHoveringRef.current) {
+          isHoveringRef.current = false;
+          
+          gsap.to(cursor, {
+            scale: 1,
+            backgroundColor: "white", 
+            border: "none",
+            mixBlendMode: "difference",
+            duration: 0.25,
+            ease: "power2.out",
+          });
+        }
       }
     };
 
-    // Window par listener lagaya
-    window.addEventListener('mousemove', moveCursor);
+    window.addEventListener("mousemove", moveCursor);
 
-    // Cleanup function
     return () => {
-      window.removeEventListener('mousemove', moveCursor);
-      // GSAP animations ko kill karna achi practice hai unmount par
-      gsap.killTweensOf(cursorRef.current);
+      window.removeEventListener("mousemove", moveCursor);
+      
+      gsap.killTweensOf(cursor);
     };
   }, []);
 
   return (
     <div
       ref={cursorRef}
-      className="custom-cursor" // Styling hum CSS file mein karenge
+      className="
+        fixed top-0 left-0
+        w-6 h-6
+        bg-white
+        rounded-full
+        pointer-events-none
+        z-[9999]
+        mix-blend-difference
+      "
     />
   );
 };

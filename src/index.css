@@ -4,63 +4,8 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-@media(max-width:768px){
-  .hero{
-    width: 90%;
-    margin: 50px auto;
-  }
-  .hero-heading{
-    font-size: 3rem;
-    line-height: 3.5rem;
-  }
-  .hero-para{
-    font-size: 1rem;
-    line-height: 1.6rem;
-  }
-}
-
-
-/* index.css */
-
-/* 1. Asli cursor ko chupana */
 body {
+  isolation: isolate;
   cursor: none;
-}
-
-/* Lekin links aur buttons par asli cursor wapis dikhana hai */
-/* Kyunki hamara custom cursor wahan transparent ho jayega */
-a, button, input, textarea, .hover-target {
-  cursor: pointer; /* Ya 'text' for inputs */
-}
-
-
-/* 2. Custom cursor ki styling */
-.custom-cursor {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 25px;  /* Size */
-  height: 25px; /* Size */
-  background-color: #292929; /* Aapka color (cyan example) */
-  border-radius: 50%;
-  pointer-events: none; /* Bohat zaroori: Taake cursor clicks ko block na kare */
-  z-index: 9999; /* Sabse upar */
-  mix-blend-mode: difference; /* Optional: Cool effect ke liye */
-  
-  /* GSAP movement handle karega, isliye transition na lagayen */
-  /* transition: none; */ 
+  background-color: white;
 }
