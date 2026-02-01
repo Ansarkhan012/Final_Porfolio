@@ -51,7 +51,7 @@ export const HomeView = () => {
     className="w-full h-full object-cover"
   />
 </section>
-<section className="w-screen h-screen">
+<section className="w-screen h-screen my-5">
   <img
     src="/project1.jpg"
     alt="Project 1"
