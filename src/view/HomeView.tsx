@@ -2,6 +2,7 @@
 
 export const HomeView = () => {
   return (
+    <>
     <section className="relative max-w-[1200px] flex flex-col items-center mx-auto w-full h-dvh px-6 py-8 md:px-12 md:py-10 overflow-hidden">
       
 
@@ -36,5 +37,27 @@ export const HomeView = () => {
       </div>
 
     </section>
+    <section className="w-screen h-screen my-5">
+  <img
+    src="/project1.jpg"
+    alt="Project 1"
+    className="w-full h-full object-cover"
+  />
+</section>
+<section className="w-screen h-screen">
+  <img
+    src="/project1.jpg"
+    alt="Project 1"
+    className="w-full h-full object-cover"
+  />
+</section>
+<section className="w-screen h-screen">
+  <img
+    src="/project1.jpg"
+    alt="Project 1"
+    className="w-full h-full object-cover"
+  />
+</section>
+    </>
   );
 };
